@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-<div class="container">
+
     <table class="table">
         <thead>
             <tr>
@@ -31,18 +31,27 @@
                 dataType: "json",
 
                 success: function(result){
+
                     for (var i = 0; i < result.length; i++) {
+                        var change = result[i].percent_change_24h.toString();
                         var newRow = '<tr><td>'+ result[i].rank + '</td>';
-                            newRow += '<td>'+ result[i].name + '</td>';
+                            newRow += '<td><a href = \"http://stockflow.test/detail/' + result[i].id + '\">'+ result[i].name + '</td></a>';
                             newRow += '<td>'+ result[i].symbol + '</td>';
                             newRow += '<td>$'+ result[i].price_usd + '</td>';
                             newRow += '<td>$'+ result[i].market_cap_usd + '</td>';
                             newRow += '<td>$'+ result[i]["24h_volume_usd"] + '</td>';
-                            newRow += '<td>'+ result[i].total_supply + '</td>';
-                            newRow += '<td>'+ result[i].percent_change_24h + '%</td>';
+                            newRow += '<td>'+ result[i].total_supply +  " " + result[i].symbol + '</td>';
+                            // newRow += '<td>'+ change + '%</td>';
                             newRow += '</tr>';
+
                         $(".table").append(newRow);
+                        var risultato = result[i].percent_change_24h.toString();
+                            if ( change > 0) {
+                                change.fontcolor("green");
+                        }
+
                     }
+
                 },
                 error: function(err){
                     console.log(err);
@@ -52,4 +61,3 @@
         UpdateCryptoPrice();
         </script>
     @endsection
-</div>

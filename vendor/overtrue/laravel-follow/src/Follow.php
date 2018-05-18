@@ -13,6 +13,7 @@ namespace Overtrue\LaravelFollow;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use stdClass;
 
@@ -21,6 +22,8 @@ use stdClass;
  */
 class Follow
 {
+    use SoftDeletes;
+
     const RELATION_LIKE = 'like';
 
     const RELATION_FOLLOW = 'follow';
@@ -32,6 +35,22 @@ class Follow
     const RELATION_UPVOTE = 'upvote';
 
     const RELATION_DOWNVOTE = 'downvote';
+
+    /**
+     * @var array
+     */
+    protected static $relationMap = [
+        'followings' => 'follow',
+        'followers' => 'follow',
+        'favoriters' => 'favorite',
+        'favorites' => 'favorite',
+        'subscriptions' => 'subscribe',
+        'subscribers' => 'subscribe',
+        'upvotes' => 'upvote',
+        'upvoters' => 'upvote',
+        'downvotes' => 'downvote',
+        'downvoters' => 'downvote',
+    ];
 
     /**
      * @param \Illuminate\Database\Eloquent\Model              $model
@@ -46,7 +65,7 @@ class Follow
         $target = self::formatTargets($target, $class ?: config('follow.user_model'));
 
         return $model->{$relation}($target->classname)
-                        ->where($class ? 'followable_id' : 'user_id', head($target->ids))->exists();
+                        ->where($class ? 'followable_id' : config('follow.users_table_foreign_key', 'user_id'), head($target->ids))->exists();
     }
 
     /**
@@ -54,6 +73,8 @@ class Follow
      * @param string                                           $relation
      * @param array|string|\Illuminate\Database\Eloquent\Model $targets
      * @param string                                           $class
+     *
+     * @throws \Exception
      *
      * @return array
      */
@@ -85,6 +106,8 @@ class Follow
      * @param array|string|\Illuminate\Database\Eloquent\Model $targets
      * @param string                                           $class
      *
+     * @throws \Exception
+     *
      * @return array
      */
     public static function toggleRelations(Model $model, $relation, $targets, $class)
@@ -98,6 +121,8 @@ class Follow
      * @param \Illuminate\Database\Eloquent\Relations\MorphToMany $morph
      * @param array|string|\Illuminate\Database\Eloquent\Model    $targets
      * @param string                                              $class
+     *
+     * @throws \Exception
      *
      * @return \stdClass
      */
@@ -149,12 +174,10 @@ class Follow
      */
     protected static function getRelationTypeFromRelation(MorphToMany $relation)
     {
-        $wheres = array_pluck($relation->getQuery()->getQuery()->wheres, 'value', 'column');
-
-        if (empty($wheres['followables.relation'])) {
+        if (!\array_key_exists($relation->getRelationName(), self::$relationMap)) {
             throw new \Exception('Invalid relation definition.');
         }
 
-        return $wheres['followables.relation'];
+        return self::$relationMap[$relation->getRelationName()];
     }
 }

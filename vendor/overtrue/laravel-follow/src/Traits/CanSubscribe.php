@@ -25,6 +25,8 @@ trait CanSubscribe
      * @param string                                        $class
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function subscribe($targets, $class = __CLASS__)
     {
@@ -51,6 +53,8 @@ trait CanSubscribe
      * @param string                                        $class
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function toggleSubscribe($targets, $class = __CLASS__)
     {

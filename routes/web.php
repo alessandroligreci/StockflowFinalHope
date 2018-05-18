@@ -1,5 +1,5 @@
 <?php
-
+use View;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,4 +28,8 @@ Route::get('/calendar', function () {
 });
 Route::get('/profile', function () {
     return view('profile');
+});
+
+Route::get('/detail/{crypto}', function ($crypto) {
+    return View::make('detail',compact('crypto'));
 });

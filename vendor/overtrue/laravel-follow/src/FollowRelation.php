@@ -12,6 +12,7 @@
 namespace Overtrue\LaravelFollow;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use InvalidArgumentException;
 
@@ -20,6 +21,8 @@ use InvalidArgumentException;
  */
 class FollowRelation extends Model
 {
+    use SoftDeletes;
+
     /**
      * @var string
      */
@@ -47,8 +50,8 @@ class FollowRelation extends Model
     public function scopePopular($query, $type = null)
     {
         $query->select('followable_id', 'followable_type', \DB::raw('COUNT(*) AS count'))
-                     ->groupBy('followable_id', 'followable_type')
-                     ->orderByDesc('count');
+                        ->groupBy('followable_id', 'followable_type')
+                        ->orderByDesc('count');
 
         if ($type) {
             $query->where('followable_type', $this->normalizeFollowableType($type));

@@ -26,6 +26,8 @@ trait CanVote
      * @param string                                        $class
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function vote($targets, $type = 'upvote', $class = __CLASS__)
     {
@@ -38,10 +40,11 @@ trait CanVote
      * Upvote an item or items.
      *
      * @param int|array|\Illuminate\Database\Eloquent\Model $targets
-     * @param string                                        $type
      * @param string                                        $class
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function upvote($targets, $class = __CLASS__)
     {
@@ -52,10 +55,11 @@ trait CanVote
      * Downvote an item or items.
      *
      * @param int|array|\Illuminate\Database\Eloquent\Model $targets
-     * @param string                                        $type
      * @param string                                        $class
      *
      * @return array
+     *
+     * @throws \Exception
      */
     public function downvote($targets, $class = __CLASS__)
     {
@@ -68,7 +72,7 @@ trait CanVote
      * @param int|array|\Illuminate\Database\Eloquent\Model $targets
      * @param string                                        $class
      *
-     * @return array
+     * @return \Overtrue\LaravelFollow\Traits\CanVote
      */
     public function cancelVote($targets, $class = __CLASS__)
     {
@@ -88,7 +92,7 @@ trait CanVote
      */
     public function hasUpvoted($target, $class = __CLASS__)
     {
-        return Follow::isRelationExists($this, 'upvote', $target, $class);
+        return Follow::isRelationExists($this, 'upvotes', $target, $class);
     }
 
     /**
@@ -101,7 +105,7 @@ trait CanVote
      */
     public function hasDownvoted($target, $class = __CLASS__)
     {
-        return Follow::isRelationExists($this, 'downvote', $target, $class);
+        return Follow::isRelationExists($this, 'downvotes', $target, $class);
     }
 
     /**
