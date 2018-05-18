@@ -11,6 +11,9 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Trends</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url('/calendar') }}">Calendar</a>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Languages</a>
             <div class="dropdown-menu" aria-labelledby="dropdown01">
