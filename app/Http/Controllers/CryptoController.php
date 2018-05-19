@@ -26,7 +26,7 @@ use Illuminate\Http\Request;
 
       class CryptoController extends Controller {
         //@return \Illuminate\Http\Response
-        
+
     }
 
     /**
