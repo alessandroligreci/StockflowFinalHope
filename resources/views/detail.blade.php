@@ -13,10 +13,6 @@
                 <th scope="col">Circulating Supply</th>
                 <th scope="col">available_supply</th>
                 <th scope="col">max_supply</th>
-                <th scope="col">percent_change_1h</th>
-                <th scope="col">Change (24h)</th>
-                <th scope="col">percent_change_7d</th>
-                <th scope="col">Price Graph (24h)</th>
             </tr>
         </thead>
         <tbody>
@@ -48,12 +44,31 @@
                                 newRow += '<td>'+ result[i].total_supply +  " " + result[i].symbol + '</td>';
                                 newRow += '<td>'+ result[i].available_supply + '</td>';
                                 newRow += '<td>'+ result[i].max_supply + '</td>';
-                                newRow += '<td>'+ result[i].percent_change_24h + '%</td>';
-                                newRow += '<td>'+ result[i].percent_change_1h + " %" + '</td>';
-                                newRow += '<td>'+ result[i].percent_change_7d + " %" +'</td>';
+                                newRow += '</tr>';
+                                newRow += '<tr><th scope="col">Change (24h)</th><th scope="col">Change (7d)</th><th scope="col">Change (1h)</th><th scope="col">Price Graph (7d)</th></tr>';
+                                // newRow += '<td>'+ result[i].percent_change_24h + '%</td>';
+                                // newRow += '<td>'+ result[i].percent_change_1h + " %" + '</td>';
+                                // newRow += '<td>'+ result[i].percent_change_7d + " %" +'</td>';
+                                if (result[i].percent_change_1h > 0) {
+                                    newRow += '<tr><td>' + result[i].percent_change_1h.fontcolor("green") + '%'.fontcolor("green") + '</td>';
+                                }
+                                else {
+                                    newRow += '<td>' + result[i].percent_change_1h.fontcolor("red") + '%'.fontcolor("red") + '</td>';
+                                }
+                                if (change > 0) {
+                                    newRow += '<td>' + change.fontcolor("green") + '%'.fontcolor("green") + '</td>';
+                                }
+                                else {
+                                    newRow += '<td>' + change.fontcolor("red") + '%'.fontcolor("red") + '</td>';
+                                }
+                                if (result[i].percent_change_7d > 0) {
+                                    newRow += '<td>' + result[i].percent_change_7d.fontcolor("green") + '%'.fontcolor("green") + '</td>';
+                                }
+                                else {
+                                    newRow += '<td>' + result[i].percent_change_7d.fontcolor("red") + '%'.fontcolor("red") + '</td>';
+                                }
                                 newRow += '</tr>';
                             $(".table").append(newRow);
-                            console.log(result);
                     }
 
 

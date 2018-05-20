@@ -1,22 +1,23 @@
 @extends('layouts.app')
 @section('content')
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Symbol</th>
-            <th scope="col">Price</th>
-            <th scope="col">Market Cap</th>
-            <th scope="col">Volume (24h)</th>
-            <th scope="col">Circulating Supply</th>
-            <th scope="col">Change (24h)</th>
-            <th scope="col">Price Graph (7d)</th>
-        </tr>
-    </thead>
-    <tbody>
-    </tbody>
-</table>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Symbol</th>
+                <th scope="col">Price</th>
+                <th scope="col">Market Cap</th>
+                <th scope="col">Volume (24h)</th>
+                <th scope="col">Circulating Supply</th>
+                <th scope="col">Change (24h)</th>
+                <th scope="col">Price Graph (7d)</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
     <script src="https://code.jquery.com/jquery.min.js"></script>
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script> --}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></script>
@@ -66,4 +67,5 @@
     }
     UpdateCryptoPrice();
     </script>
+</body>
 @endsection

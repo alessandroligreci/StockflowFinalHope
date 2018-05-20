@@ -16,8 +16,4 @@
     </center>
 
     </head>
-
-
-
-
 @endsection
