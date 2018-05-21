@@ -11,8 +11,9 @@
                 <th scope="col">Market Cap</th>
                 <th scope="col">Volume (24h)</th>
                 <th scope="col">Circulating Supply</th>
-                <th scope="col">Change (24h)</th>
                 <th scope="col">Price Graph (7d)</th>
+                <th scope="col">Change (24h)</th>
+
             </tr>
         </thead>
         <tbody>
@@ -35,10 +36,10 @@
                     var rank = result[i].rank;
                     var name = result[i].name;
                     var symbol = result[i].symbol;
-                    var price = result[i].price_usd;
-                    var market = result[i].market_cap_usd;
-                    var volume24 = result[i]["24h_volume_usd"];
-                    var totalSupply = result[i].total_supply;
+                    var price = parseFloat(result[i].price_usd);
+                    var market = parseFloat(result[i].market_cap_usd).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var volume24 = parseFloat(result[i]["24h_volume_usd"]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var totalSupply = parseFloat(result[i].total_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     var change24 = result[i].percent_change_24h;
                     var newRow = '<tr><td>'+ rank + '</td>';
                         newRow += '<td><a href=\"http://stockflow.test/detail/' + result[i].id + '\">' + name + '</a></td>';
@@ -47,6 +48,7 @@
                         newRow += '<td>$'+ market + '</td>';
                         newRow += '<td>$'+ volume24 + '</td>';
                         newRow += '<td>'+ totalSupply + '</td>';
+                        newRow += '<td>'+ " " + '</td>';
                         //newRow += '<td>'+ change24 + '%</td>';
                         if (change24 > 0) {
                             newRow += '<td>' + change24.fontcolor("green") + '%'.fontcolor("green") + '</td>';
@@ -55,17 +57,21 @@
                             newRow += '<td>' + change24.fontcolor("red") + '%'.fontcolor("red") + '</td>';
                         }
                     //newRow += '<td>'+ '<button class="btn" onclick=""> BUY </button>' + '</td>';
+                    //newRow += '<td><button type="button" id = "button">Buy</button>' + '</td>';
                     newRow += '</tr>';
                         newRow += '</tr>';
                     $(".table").append(newRow);
-                }
-            },
+
+                    }
+                },
             error: function(err){
                 console.log(err);
             }
         });
     }
     UpdateCryptoPrice();
+
+    document.getElementById("button").addEventListener("click", displayDate);
     </script>
 </body>
 @endsection
