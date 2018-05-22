@@ -42,7 +42,7 @@
                     var change24 = result.data[i].quotes.USD.percent_change_24h.toString();
                     var rank = result.data[i].rank;
                     var newRow = '<tr><td>'+ rank + '</td>';
-                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].name + '\"> ' + name + '</a></td>';
+                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].id + '\"> ' + name + '</a></td>';
                     newRow += '<td>'+ symbol + '</td>';
                     newRow += '<td>$'+ price + '</td>';
                     newRow += '<td>$'+ market + '</td>';
