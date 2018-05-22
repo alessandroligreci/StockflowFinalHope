@@ -28,28 +28,27 @@
     function UpdateCryptoPrice(){
         $.ajax({
             type: "GET",
-            url: "https://api.coinmarketcap.com/v1/ticker/",
+            url: "https://api.coinmarketcap.com/v2/ticker/?sort=rank&structure=array",
             dataType: "json",
 
             success: function(result){
-                for (var i = 0; i < result.length; i++) {
-                    var rank = result[i].rank;
-                    var name = result[i].name;
-                    var symbol = result[i].symbol;
-                    var price = parseFloat(result[i].price_usd);
-                    var market = parseFloat(result[i].market_cap_usd).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    var volume24 = parseFloat(result[i]["24h_volume_usd"]).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    var totalSupply = parseFloat(result[i].total_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    var change24 = result[i].percent_change_24h;
+                for (var i = 0; i < result.data.length; i++) {
+                    var name = result.data[i].name;
+                    var symbol = result.data[i].symbol;
+                    var price = parseFloat(result.data[i].quotes.USD.price);
+                    var market = parseFloat(result.data[i].quotes.USD.market_cap).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var volume24 = parseFloat(result.data[i].quotes.USD.volume_24h).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var totalSupply = parseFloat(result.data[i].total_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var change24 = result.data[i].quotes.USD.percent_change_24h.toString();
+                    var rank = result.data[i].rank;
                     var newRow = '<tr><td>'+ rank + '</td>';
-                        newRow += '<td><a href=\"http://stockflow.test/detail/' + result[i].id + '\">' + name + '</a></td>';
-                        newRow += '<td>'+ symbol + '</td>';
-                        newRow += '<td>$'+ price + '</td>';
-                        newRow += '<td>$'+ market + '</td>';
-                        newRow += '<td>$'+ volume24 + '</td>';
-                        newRow += '<td>'+ totalSupply + '</td>';
-                        newRow += '<td>'+ " " + '</td>';
-                        //newRow += '<td>'+ change24 + '%</td>';
+                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].name + '\"> ' + name + '</a></td>';
+                    newRow += '<td>'+ symbol + '</td>';
+                    newRow += '<td>$'+ price + '</td>';
+                    newRow += '<td>$'+ market + '</td>';
+                    newRow += '<td>$'+ volume24 + '</td>';
+                    newRow += '<td>'+ totalSupply + " " + symbol + '</td>';
+                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/' + result.data[i].id + '.png\"></td>';
                         if (change24 > 0) {
                             newRow += '<td>' + change24.fontcolor("green") + '%'.fontcolor("green") + '</td>';
                         }
@@ -59,11 +58,10 @@
                     //newRow += '<td>'+ '<button class="btn" onclick=""> BUY </button>' + '</td>';
                     //newRow += '<td><button type="button" id = "button">Buy</button>' + '</td>';
                     newRow += '</tr>';
-                        newRow += '</tr>';
+                       newRow += '</tr>';
                     $(".table").append(newRow);
-
-                    }
-                },
+                }
+            },
             error: function(err){
                 console.log(err);
             }
@@ -71,7 +69,7 @@
     }
     UpdateCryptoPrice();
 
-    document.getElementById("button").addEventListener("click", displayDate);
+    //document.getElementById("button").addEventListener("click", displayDate);
     </script>
 </body>
 @endsection
