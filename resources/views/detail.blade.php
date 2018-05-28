@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
     <body>
-        <div class="container">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="row" id="title">
                     <div class="col-lg-3 col-md-3 col-3">
@@ -80,7 +79,7 @@
             function CryptoDetail(){
                 $.ajax({
                     type: "GET",
-                    url: "https://api.coinmarketcap.com/v2/ticker/{{$crypto}}/",
+                    url: "https://api.coinmarketcap.com/v2/ticker/{{$crypto}}",
                     dataType: "json",
 
                     success: function(result){
@@ -129,15 +128,14 @@
                                     //document.getElementById('cambio7d').innerHTML = change7d.fontcolor("red") + "%".fontcolor("red");
                                 }
                                 newRow += '<td>' + volume24;
-                                newRow += '<td>' + market;
-                            //     newRow += '<td><button type="button" id = "button">Buy</button>';
-                                newRow += '</tr>';
-                            $(".table").append(newRow);
-                            // document.getElementById("button").addEventListener("click", buyFunction);
-                            // function buyFunction () {
-                            //     var quantity = parseFloat(prompt("Please enter the quantity you want to invest"));
-                            //     console.log(quantity);
-                            //     }
+                            //     newRow += '</tr>';
+                            // $(".table").append(newRow);
+                            document.getElementById("button").addEventListener("click", buyFunction);
+
+                            function buyFunction () {
+                                var quantity = parseFloat(prompt("Please enter the quantity you want to invest"));
+                                console.log(quantity);
+                            }
                     },
                     error: function(err){
                         console.log(err);

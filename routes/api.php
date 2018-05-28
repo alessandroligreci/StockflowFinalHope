@@ -22,6 +22,6 @@ Route::post('/cryptos', 'Auth\ApiController@getUserCryptos');
 
 Route::post('/follow', 'Auth\ApiController@followUser');
 
-Route::post('/wallet', 'Auth\ApiController@getWalletCryptos');
+Route::get('/wallet', 'Auth\ApiController@getWalletCryptos');
 
-Route::post('/users', 'Auth\ApiController@getUsers');
+Route::get('/users', 'Auth\ApiController@getUsers');

@@ -1,5 +1,8 @@
 <?php
 
+use StockFlowSite\Crypto;
+use StockFlowSite\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +17,9 @@
 Route::redirect('/', '/home');
 
 Route::get('/wallet', function () {
-    return view('wallet');
+    $wallet = Crypto::where('user_id', Auth::user()->id)->get();
+
+    return View::make('wallet',compact('wallet'));
 });
 
 Auth::routes('');

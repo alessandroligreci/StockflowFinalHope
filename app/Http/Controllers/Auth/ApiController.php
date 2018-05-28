@@ -49,12 +49,6 @@ class ApiController extends Controller
         return response()->json($cryptos);
     }
 
-    //Prende history acquisti per user_id
-    public function getWalletCryptos(Request $request) {
-        $wallet = Crypto::where('user_id', $request->input('user_id'))->get();
-        return response()->json($wallet);
-    }
-
     //Inviare dati delle crypto acquistate
     public function postUserCryptos(Request $request) {
         $crypto = new Crypto;
