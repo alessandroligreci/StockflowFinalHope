@@ -26,7 +26,7 @@
             function CryptoDetail(){
                 $.ajax({
                     type: "GET",
-                    url: "https://api.coinmarketcap.com/v2/ticker/{{$crypto}}/",
+                    url: "https://api.coinmarketcap.com/v2/ticker/{{$crypto}}",
                     dataType: "json",
 
                     success: function(result){
@@ -70,10 +70,11 @@
                             //     newRow += '</tr>';
                             // $(".table").append(newRow);
                             document.getElementById("button").addEventListener("click", buyFunction);
+
                             function buyFunction () {
                                 var quantity = parseFloat(prompt("Please enter the quantity you want to invest"));
                                 console.log(quantity);
-                                }
+                            }
                     },
                     error: function(err){
                         console.log(err);

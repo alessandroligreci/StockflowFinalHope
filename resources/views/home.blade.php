@@ -58,7 +58,6 @@
                     //newRow += '<td>'+ '<button class="btn" onclick=""> BUY </button>' + '</td>';
                     //newRow += '<td><button type="button" id = "button">Buy</button>' + '</td>';
                     newRow += '</tr>';
-                       newRow += '</tr>';
                     $(".table").append(newRow);
                 }
             },
