@@ -12,9 +12,11 @@
 */
 
 Route::redirect('/', '/home');
+
 Route::get('/wallet', function () {
     return view('wallet');
 });
+
 Auth::routes('');
 
 Route::get('/home', function () {

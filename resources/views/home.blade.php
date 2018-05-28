@@ -13,18 +13,18 @@
                 <th scope="col">Circulating Supply</th>
                 <th scope="col">Price Graph (7d)</th>
                 <th scope="col">Change (24h)</th>
-
             </tr>
         </thead>
         <tbody>
         </tbody>
     </table>
-    <script src="https://code.jquery.com/jquery.min.js"></script>
-    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script> --}}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script type='text/javascript'>
+<script src="https://code.jquery.com/jquery.min.js"></script>
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script> --}}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></script>
+<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script type='text/javascript'>
     function UpdateCryptoPrice(){
         $.ajax({
             type: "GET",
@@ -38,11 +38,11 @@
                     var price = parseFloat(result.data[i].quotes.USD.price);
                     var market = parseFloat(result.data[i].quotes.USD.market_cap).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     var volume24 = parseFloat(result.data[i].quotes.USD.volume_24h).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                    var totalSupply = parseFloat(result.data[i].total_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                    var totalSupply = parseFloat(result.data[i].circulating_supply).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                     var change24 = result.data[i].quotes.USD.percent_change_24h.toString();
                     var rank = result.data[i].rank;
                     var newRow = '<tr><td>'+ rank + '</td>';
-                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].id + '\"> ' + name + '</a></td>';
+                    newRow += '<td id= "name"><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].id + '\"> ' + name + '</a></td>';
                     newRow += '<td>'+ symbol + '</td>';
                     newRow += '<td>$'+ price + '</td>';
                     newRow += '<td>$'+ market + '</td>';
@@ -58,7 +58,6 @@
                     //newRow += '<td>'+ '<button class="btn" onclick=""> BUY </button>' + '</td>';
                     //newRow += '<td><button type="button" id = "button">Buy</button>' + '</td>';
                     newRow += '</tr>';
-                       newRow += '</tr>';
                     $(".table").append(newRow);
                 }
             },
