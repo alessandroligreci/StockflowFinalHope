@@ -2,14 +2,11 @@
 @section('content')
 <div class="container-fluid">
     <body>
-        <table class="table">
-            <tr class="ciaone">
-                <td class="change"> Wallet Total Value</td>
-                <td class="topSpace"></td>
-                <td class="change"> Wallet Total Change</td>
-            </tr>
-        </table>
-        <table class="table">
+        <div class="changes">
+            <div class="change"> Wallet Total Value<br>Number $</div>
+            <div class="change"> Wallet Total Change<br>Number %</div>
+        </div>
+        <table class="table topSpace">
             <tr class="ciaone">
                 <td class="ciaone">Coin</td>
                 <td class="ciaone">Amount</td>
