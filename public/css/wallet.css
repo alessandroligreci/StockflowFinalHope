@@ -1,6 +1,16 @@
-.ciao {
-    padding: 1em;
+.change {
+    width: 50%;
     text-align: center;
+}
+
+.ciao {
+    text-align: center;
+    width: 15%;
+}
+
+.ciaone {
+    text-align: center;
+    width: 15%;
 }
 
 .cryptoTitle {

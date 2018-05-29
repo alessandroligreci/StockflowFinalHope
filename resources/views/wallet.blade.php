@@ -1,23 +1,34 @@
 @extends('layouts.walletApp')
 @section('content')
+<div class="container-fluid">
     <body>
-    <table>
-        <tr class="ciao">
-            <td class="ciao"></td>
-            <td class="ciao">Amount</td>
-            <td class="ciao">Value then</td>
-            <td class="ciao">Date</td>
-        </tr>
-        @foreach ($wallet as $crypto)
-            <tr class="ciao">
-                <td class="cryptoTitle">Coin: {{$crypto->name}}</td>
+        <table class="table">
+            <tr class="ciaone">
+                <td class="change"> Wallet Total Value</td>
+                <td class="topSpace"></td>
+                <td class="change"> Wallet Total Change</td>
             </tr>
-            <tr>
+        </table>
+        <table class="table">
+            <tr class="ciaone">
+                <td class="ciaone">Coin</td>
+                <td class="ciaone">Amount</td>
+                <td class="ciaone">Value Then</td>
+                <td class="ciaone">Value Now</td>
+                <td class="ciaone">Change</td>
+                <td class="ciaone">Date</td>
+            </tr>
+            @foreach ($wallet as $crypto)
+            <tr class="ciao">
+                <td class="ciao">{{$crypto->name}}</td>
                 <td class="ciao">{{$crypto->quantity}}</td>
                 <td class="ciao">{{$crypto->value}}$</td>
+                <td class="ciao"></td>
+                <td class="ciao"></td>
                 <td class="ciao">{{$crypto->created_at}}</td>
             </tr>
-        @endforeach
-    </table>
-</body>
+            @endforeach
+        </table>
+    </body>
+</div>
 @endsection

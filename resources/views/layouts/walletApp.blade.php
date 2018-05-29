@@ -25,8 +25,6 @@
     <link href="{{ asset('css/wallet.css') }}" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
     @yield('content')
-  </div>
 </body>
 </html>
