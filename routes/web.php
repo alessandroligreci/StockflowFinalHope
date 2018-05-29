@@ -18,7 +18,6 @@ Route::redirect('/', '/home');
 
 Route::get('/wallet', function () {
     $wallet = Crypto::where('user_id', Auth::user()->id)->get();
-
     return View::make('wallet',compact('wallet'));
 });
 
@@ -38,3 +37,5 @@ Route::get('/profile', function () {
 Route::get('/detail/{crypto}', function ($crypto) {
     return View::make('detail',compact('crypto'));
 });
+
+Route::get('/detail/{crypto}/buy', 'CryptoController@postUserCryptos');

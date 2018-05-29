@@ -4,6 +4,9 @@ namespace StockFlowSite\Http\Controllers;
 
 use StockFlowSite\Crypto;
 use Illuminate\Http\Request;
+use StockFlowSite\User;
+use Illuminate\Support\Facades\Auth;
+
 ?>
 <!-- <script type='text/javascript'></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -25,8 +28,20 @@ use Illuminate\Http\Request;
      */
 
       class CryptoController extends Controller {
-        //@return \Illuminate\Http\Response
+        //@return \Illuminate\Http\Respons
 
+        public function postUserCryptos($crypto, Request $request) {
+            $crypto = new Crypto;
+            $crypto->name = $request->input('name');
+            $crypto->quantity = $request->input('quantity');
+            $crypto->value = $request->input('value');
+            $crypto->user_id = Auth::user()->id;
+            $crypto->save();
+            //return response()->json('ok');
+            // $wallet = Crypto::where('user_id', Auth::user()->id)->get();
+            // return View::make('wallet',compact('wallet'));
+            //return view('wallet');
+        }
     }
 
     /**
