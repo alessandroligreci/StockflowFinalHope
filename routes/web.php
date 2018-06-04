@@ -16,16 +16,7 @@ use Illuminate\Support\Facades\Input;
 
 Route::redirect('/', '/home');
 
-Route::get('/wallet', function () {
-    if ($user = Auth::user()) {
-        $wallet = Crypto::where('user_id', Auth::user()->id)->get();
-        return View::make('wallet',compact('wallet'));
-    }
-
-    else {
-        return view ('not_logged_wallet')->withMessage ( 'No Details found. Try to search again !' );
-    }
-});
+Route::get('/wallet','WalletController@index');
 
 Auth::routes('');
 

@@ -35,6 +35,7 @@ use Illuminate\Support\Facades\Auth;
             $crypto->name = $request->input('name');
             $crypto->quantity = $request->input('quantity');
             $crypto->value = $request->input('value');
+            $crypto->value_now = $request->input('value_now');
             $crypto->user_id = Auth::user()->id;
             $crypto->save();
             //return response()->json('ok');

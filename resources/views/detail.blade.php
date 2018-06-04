@@ -54,7 +54,7 @@
                         var symbol = result.data.symbol;
                         var icon = '\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data.id + '.png\"';
                         var price = parseFloat(result.data.quotes.USD.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                        var priceToBuy = parseFloat(result.data.quotes.USD.price);
+                        var priceNow = parseFloat(result.data.quotes.USD.price);
                         var price_btc = parseFloat(result.data.price_btc);
                         var market = parseFloat(result.data.quotes.USD.market_cap).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
                         var volume24 = parseFloat(result.data.quotes.USD.volume_24h).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -99,7 +99,8 @@
                         document.getElementById("sell").addEventListener("click", sellFunction);
 
                         function buyFunction() {
-                            var quantity = parseFloat(prompt("Please enter the quantity you want to invest"));
+                            var priceToBuy = parseFloat(prompt("Please enter the quantity you want to invest"));
+                            var quantity = priceToBuy / priceNow;
                             var dataToSend = {
                                 name: name,
                                 quantity: quantity,
@@ -107,7 +108,7 @@
                             };
                             $.ajax({
                                 type: "GET",
-                                url: "http://stockflow.test/detail/{{$crypto}}/buy?name="+name+'&value='+priceToBuy+'&quantity='+quantity,
+                                url: "http://stockflow.test/detail/{{$crypto}}/buy?name="+name+'&value='+priceToBuy+'&quantity='+quantity+'&value_now='+priceNow,
                                 // dataType: "form-data",
                                 headers: {
                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

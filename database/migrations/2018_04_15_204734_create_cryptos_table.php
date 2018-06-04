@@ -19,6 +19,7 @@ class CreateCryptosTable extends Migration
             $table->string('name');
             $table->float('quantity', 17, 8);
             $table->float('value', 17, 8);
+            $table->float('value_now', 17, 8)->default(200);
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
