@@ -50,14 +50,9 @@ class ApiController extends Controller
     }
 
     //Inviare dati delle crypto acquistate
-    public function postUserCryptos(Request $request) {
-        $crypto = new Crypto;
-        $crypto->name = $request->input('name');
-        $crypto->quantity = $request->input('quantity');
-        $crypto->value = $request->input('value');
-        $crypto->user_id = $request->input('user_id');
-        $crypto->save();
-        return response()->json('{"status":"Transazione avvenuta!"}');
+    public function getWalletCryptos(Request $request) {
+        $wallet = Crypto::where('user_id', $request->input('user_id'))->get();
+        return response()->json($wallet);
     }
 
     //prende tutti gli utenti
