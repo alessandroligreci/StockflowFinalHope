@@ -19,13 +19,12 @@ class WalletController extends Controller
             $walletCha = 0;
             foreach ($wallet as $crypto) {
                 $walletVal += $crypto->value_now * $crypto->quantity;
-                $walletCha += $crypto->value;
+                $walletCha += $crypto->value; //tot di tutti i soldi spesi
             }
+            $totalValue = $walletVal - $walletCha;
             $totalChange = (($walletVal / $walletCha) -1) * 100;
-            return View::make('wallet',compact('wallet', 'walletVal', 'totalChange'));
-        }
-
-        else {
+            return View::make('wallet',compact('wallet', 'walletVal', 'totalChange','totalValue'));
+        } else {
             return view ('not_logged_wallet')->withMessage ( 'No Details found. Try to search again !' );
         }
     }

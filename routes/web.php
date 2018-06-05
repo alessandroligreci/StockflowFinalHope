@@ -41,7 +41,7 @@ Route::any('/search',function(){
         $q = Input::get ( 'q' );
         $user = User::where ( 'name', 'LIKE', '%' . $q . '%' )->orWhere ( 'email', 'LIKE', '%' . $q . '%' )->get ();
         if (count ( $user ) > 0)
-            return view ( 'search_resoult' )->withDetails ( $user )->withQuery ( $q );
+            return view ( 'search_result' )->withDetails ( $user )->withQuery ( $q );
         else
-            return view ( 'search_resoult' )->withMessage ( 'No Details found. Try to search again !' );
+            return view ( 'search_result' )->withMessage ( 'No Details found. Try to search again !' );
     } );
