@@ -2,6 +2,7 @@
 @section('content')
 
 <body>
+    @if ($totalValue != 0)
     <div class="changes">
         @if ($totalValue < 0)
             <div class="change"> Wallet Total Value:<p class="gain_red">{{number_format($totalValue, 2, ',', '.')}}$</p></div>
@@ -38,5 +39,15 @@
         </tr>
         @endforeach
     </table>
+    @else
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h1>It seems like your Crypto-Wallet is empty. Start buying some CryptoCurrency</h1>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-link"><a href="{{ route('/calendar') }}">{{ __('Home') }}</a></button>
+        </div>
+    @endif
 </body>
 @endsection

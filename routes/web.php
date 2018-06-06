@@ -17,23 +17,17 @@ use Illuminate\Support\Facades\Input;
 Route::redirect('/', '/home');
 
 Route::get('/wallet','WalletController@index');
+Route::get('/wallet','WalletController@index');
 
 Auth::routes('');
 
-Route::get('/home', function () {
-  return view ('home');
-});
+Route::get('/home', 'HomeController@index');
 
-Route::get('/calendar', function () {
-    return view('calendar');
-});
-Route::get('/profile', function () {
-    return view('profile');
-});
+Route::get('/calendar', 'Calendarcontroller@showCalendar');
 
-Route::get('/detail/{crypto}', function ($crypto) {
-    return View::make('detail',compact('crypto'));
-});
+Route::get('/profile', 'ProfileController@showProfile');
+
+Route::get('/detail/{crypto}', 'CryptoController@getDetail');
 
 Route::get('/detail/{crypto}/buy', 'CryptoController@postUserCryptos');
 

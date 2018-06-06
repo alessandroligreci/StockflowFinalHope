@@ -1,4 +1,5 @@
 <head>
+
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <a class="navbar-brand" href="{{ url('/home') }}">StockFlow</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -6,6 +7,8 @@
       </button>
 
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
+            @if (Auth::check())
             <ul class="navbar-nav mr-auto">
                 <a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
                 <li class="nav-item">
@@ -17,6 +20,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/wallet') }}">Wallet</a>
                 </li>
+                @endif
             </ul>
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
@@ -48,7 +52,7 @@
                 {{ csrf_field() }}
                 <div class="input-group">
                     <input type="text" class="form-control" name="q" placeholder="Search users"><span class="input-group-btn">
-                    <button type="submit" class="btn btn-success">Search</button>    
+                    <button type="submit" class="btn btn-success">Search</button>
                     </span>
                 </div>
             </form>

@@ -17,15 +17,17 @@ class WalletController extends Controller
             $wallet = Crypto::where('user_id', Auth::user()->id)->get();
             $walletVal = 0;
             $walletCha = 0;
+            $totalValue = 0;
+            $totalChange = 0;
             foreach ($wallet as $crypto) {
                 $walletVal += $crypto->value_now * $crypto->quantity;
                 $walletCha += $crypto->value; //tot di tutti i soldi spesi
             }
-            $totalValue = $walletVal - $walletCha;
-            $totalChange = (($walletVal / $walletCha) -1) * 100;
+            if ($walletCha > 0) {
+                $totalValue = $walletVal - $walletCha;
+                $totalChange = (($walletVal / $walletCha) -1) * 100;
+            }
             return View::make('wallet',compact('wallet', 'walletVal', 'totalChange','totalValue'));
-        } else {
-            return view ('not_logged_wallet')->withMessage ( 'No Details found. Try to search again !' );
         }
     }
 }

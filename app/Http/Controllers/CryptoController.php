@@ -6,6 +6,7 @@ use StockFlowSite\Crypto;
 use Illuminate\Http\Request;
 use StockFlowSite\User;
 use Illuminate\Support\Facades\Auth;
+use View;
 
 ?>
 <!-- <script type='text/javascript'></script>
@@ -42,6 +43,9 @@ use Illuminate\Support\Facades\Auth;
             // $wallet = Crypto::where('user_id', Auth::user()->id)->get();
             // return View::make('wallet',compact('wallet'));
             //return view('wallet');
+        }
+        public function getDetail($crypto) {
+            return View::make('detail',compact('crypto'));
         }
     }
 
