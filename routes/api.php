@@ -17,11 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/crypto', 'Auth\ApiController@postUserCryptos');
+Route::post('/crypto', 'CryptoController@postUserCryptos');
 Route::post('/cryptos', 'Auth\ApiController@getUserCryptos');
 
 Route::post('/follow', 'Auth\ApiController@followUser');
 
 Route::get('/wallet', 'Auth\ApiController@getWalletCryptos');
 Route::post('/wallet', 'Auth\ApiController@getWalletCryptos');
+
 Route::get('/users', 'Auth\ApiController@getUsers');
+Route::post('/users', 'Auth\ApiController@getUsers');

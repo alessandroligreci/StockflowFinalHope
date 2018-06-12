@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.HomeApp')
 @section('content')
 <body>
     <table class="table">
@@ -21,7 +21,7 @@
 <script src="https://code.jquery.com/jquery.min.js"></script>
 {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script> --}}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></script>
-<link href="{{ asset('css/home.css') }}" rel="stylesheet">
+{{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet"> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type='text/javascript'>
@@ -42,13 +42,13 @@
                     var change24 = result.data[i].quotes.USD.percent_change_24h.toString();
                     var rank = result.data[i].rank;
                     var newRow = '<tr><td>'+ rank + '</td>';
-                    newRow += '<td id= "name"><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].id + '\"> ' + name + '</a></td>';
-                    newRow += '<td>'+ symbol + '</td>';
-                    newRow += '<td>$'+ price + '</td>';
-                    newRow += '<td>$'+ market + '</td>';
-                    newRow += '<td>$'+ volume24 + '</td>';
-                    newRow += '<td>'+ totalSupply + " " + symbol + '</td>';
-                    newRow += '<td><img src=\"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/' + result.data[i].id + '.png\"></td>';
+                    newRow += '<td class="align-middle" id= "name"><img src=\"https://s2.coinmarketcap.com/static/img/coins/16x16/' + result.data[i].id + '.png\"> <a href=\"http://stockflow.test/detail/' + result.data[i].id + '\"> ' + name + '</a></td>';
+                    newRow += '<td class="align-middle">'+ symbol + '</td>';
+                    newRow += '<td class="align-middle ">$'+ price + '</td>';
+                    newRow += '<td class="align-middle" >$'+ market + '</td>';
+                    newRow += '<td class="align-middle">$'+ volume24 + '</td>';
+                    newRow += '<td class="align-middle">'+ totalSupply + " " + symbol + '</td>';
+                    newRow += '<td class="align-middle"><img src=\"https://s2.coinmarketcap.com/generated/sparklines/web/7d/usd/' + result.data[i].id + '.png\"></td>';
                         if (change24 > 0) {
                             newRow += '<td>' + change24.fontcolor("green") + '%'.fontcolor("green") + '</td>';
                         }

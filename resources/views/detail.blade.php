@@ -26,6 +26,9 @@
                         <th scope="col">Change 7d</th>
                         <th scope="col">Volume(24h)</th>
                         <th scope="col">Market Cap</th>
+                        <th scope="col">Total Supply</th>
+                        <th scope="col">Max Supply</th>
+                        <th scope="col">Circulating Supply</th>
                         <th scope="col">Buy / Sell</th>
                     </tr>
                 </thead>
@@ -68,7 +71,7 @@
                         $("#icona").attr("src", 'https://s2.coinmarketcap.com/static/img/coins/32x32/' + result.data.id + '.png');
                         document.getElementById('simbolo').innerHTML = "(" + symbol + ")";
                         // document.getElementById('valore').innerHTML = "$" + price;
-                        var newRow = '<tr><td>' + price + '</td>';
+                        var newRow = '<tr><td> $' + price + '</td>';
                         if (change1h > 0) {
                             newRow += '<td>' + change1h.fontcolor("green") + '%'.fontcolor("green");
                             //document.getElementById('cambio1h').innerHTML = change1h.fontcolor("green") + "%".fontcolor("green");
@@ -92,6 +95,9 @@
                         }
                         newRow += '<td>' + volume24 + '</td>';
                         newRow += '<td>' + market + '</td>';
+                        newRow += '<td>' + totalSupply + '</td>';
+                        newRow += '<td>' + max_supply + '</td>';
+                        newRow += '<td>' + available_supply + '</td>';
                         newRow += '<td><button type="button" id="buy">Buy</button> <button type="button" id="sell">Sell</button></td>';
                         newRow += '</tr>';
                         $(".table").append(newRow);
@@ -108,7 +114,7 @@
                             };
                             $.ajax({
                                 type: "GET",
-                                url: "http://stockflow.test/detail/{{$crypto}}/buy?name="+name+'&value='+priceToBuy+'&quantity='+quantity+'&value_now='+priceNow,
+                                url: "https://stockflow.test/detail/{{$crypto}}/buy?name="+name+'&value='+priceToBuy+'&quantity='+quantity+'&value_now='+priceNow,
                                 // dataType: "form-data",
                                 headers: {
                                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
