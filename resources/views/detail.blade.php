@@ -17,22 +17,23 @@
             </div>
         </div>
         <div class="row" id="pricerow">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Price</th>
-                        <th scope="col">Change 1h</th>
-                        <th scope="col">Change 24h</th>
-                        <th scope="col">Change 7d</th>
-                        <th scope="col">Volume(24h)</th>
-                        <th scope="col">Market Cap</th>
-                        <th scope="col">Total Supply</th>
-                        <th scope="col">Max Supply</th>
-                        <th scope="col">Circulating Supply</th>
-                        <th scope="col">Buy / Sell</th>
-                    </tr>
-                </thead>
-            </table>
+            <table class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Price</th>
+                            <th scope="col">Change 1h</th>
+                            <th scope="col">Change 24h</th>
+                            <th scope="col">Change 7d</th>
+                            <th scope="col">Volume(24h)</th>
+                            <th scope="col">Market Cap</th>
+                            <th scope="col">Total Supply</th>
+                            <th scope="col">Max Supply</th>
+                            <th scope="col">Circulating Supply</th>
+                            <th scope="col">Buy</th>
+                        </tr>
+                    </thead>
+                </table>
         </div>
         <script src="https://code.jquery.com/jquery.min.js"></script>
         {{--
@@ -98,11 +99,10 @@
                         newRow += '<td>' + totalSupply + '</td>';
                         newRow += '<td>' + max_supply + '</td>';
                         newRow += '<td>' + available_supply + '</td>';
-                        newRow += '<td><button type="button" id="buy">Buy</button> <button type="button" id="sell">Sell</button></td>';
+                        newRow += '<td><button type="button" class="btn btn-success" id="buy">Buy</button></td>';
                         newRow += '</tr>';
                         $(".table").append(newRow);
                         document.getElementById("buy").addEventListener("click", buyFunction);
-                        document.getElementById("sell").addEventListener("click", sellFunction);
 
                         function buyFunction() {
                             var priceToBuy = parseFloat(prompt("Please enter the quantity you want to invest"));
@@ -114,11 +114,11 @@
                             };
                             $.ajax({
                                 type: "GET",
-                                url: "https://stockflow.test/detail/{{$crypto}}/buy?name="+name+'&value='+priceToBuy+'&quantity='+quantity+'&value_now='+priceNow,
+                                url: "https://stockflow.test/detail/{{$crypto}}/buy?name=" + name + '&value=' + priceToBuy + '&quantity=' + quantity + '&value_now=' + priceNow,
                                 // dataType: "form-data",
                                 headers: {
-                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                                 },
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
                                 // data: {
                                 //     'name': name,
                                 //     'quantity': quantity,
@@ -127,19 +127,17 @@
 
                                 success: function(result) {
                                     console.log(result);
-                                    alert("Transazione avvenuta");
+                                    alert("Your Transaction Took Place");
                                 },
                                 error: function(err) {
                                     console.log(err);
+                                    alert("Something Went Wrong, Please Try Again Later");
                                 }
                             });
                             console.log(quantity);
                         }
 
-                        function sellFunction() {
-                            var quantity = parseFloat(prompt("Please enter the quantity you want to sell"));
-                            console.log(quantity);
-                        }
+
                     },
                     error: function(err) {
                         console.log(err);
@@ -150,4 +148,6 @@
         </script>
     </div>
 </body>
+{{--
+@include('layouts.errors') --}}
 @endsection

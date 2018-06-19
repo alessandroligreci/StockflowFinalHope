@@ -65,12 +65,12 @@ class ApiController extends Controller
         }
     }
 
-    //
-    public function followUser(Request $request) {
-        $user = User::where('id', $request->input('user_id'))->first();
-        $user_to_follow = User::where('id', $request->input('follow_id'))->first();
-        $user->follow($user_to_follow);
-        //return $user_to_follow;
-        return response()->json($user);
-    }
+    // //
+    // public function followUser(Request $request) {
+    //     $user = User::where('id', $request->input('user_id'))->first();
+    //     $user_to_follow = User::where('id', $request->input('follow_id'))->first();
+    //     $user->follow($user_to_follow);
+    //     //return $user_to_follow;
+    //     return response()->json($user);
+    // }
 }

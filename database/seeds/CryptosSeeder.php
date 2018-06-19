@@ -11,6 +11,6 @@ class CryptosSeeder extends Seeder
      */
     public function run()
     {
-        factory(StockFlowSite\Crypto::class, 10)->create();
+        //factory(StockFlowSite\Crypto::class, 10)->create();
     }
 }

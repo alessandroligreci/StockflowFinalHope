@@ -27,7 +27,6 @@ use View;
      *
      *
      */
-
       class CryptoController extends Controller {
         //@return \Illuminate\Http\Respons
 
@@ -37,16 +36,27 @@ use View;
             $crypto->quantity = $request->input('quantity');
             $crypto->value = $request->input('value');
             $crypto->value_now = $request->input('value_now');
-            $crypto->user_id = $request->input('user_id');
+            // $crypto->walletChange = $request->input('walletChange');
+            $crypto->user_id = Auth::user()->id;
             $crypto->save();
             return;
             //return response()->json('ok');
-            // $wallet = Crypto::where('user_id', Auth::user()->id)->get();
-            // return View::make('wallet',compact('wallet'));
+            //$wallet = Crypto::where('user_id', Auth::user()->id)->get();
+            //return View::make('wallet',compact('wallet'));
             //return view('wallet');
         }
         public function getDetail($crypto) {
-            return View::make('detail',compact('crypto'));
+            return view('detail',compact('crypto'));
+        }
+        public function sellUserCryptos (Request $request) {
+            $crypto = new Crypto;
+            $crypto->name = $request->input('name');
+            $crypto->quantity = $request->input('quantity');
+            $crypto->value = $request->decrement('value');
+            $crypto->value_now = $request->input('value_now');
+            $crypto->user_id = Auth::user()->id;
+            // $crypto->save();
+            return;
         }
     }
 

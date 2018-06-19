@@ -37,3 +37,7 @@
 .topSpace {
     height: 20%;
 }
+
+.btn-danger {
+    color: white;
+}

@@ -32,6 +32,9 @@ class CreateCryptosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cryptos');
+        Schema::dropIfExists('cryptos', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn(['user_id']);
+        });
     }
 }

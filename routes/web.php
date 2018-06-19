@@ -17,7 +17,8 @@ use Illuminate\Support\Facades\Input;
 Route::redirect('/', '/home');
 
 Route::get('/wallet','WalletController@index');
-Route::get('/wallet','WalletController@index');
+
+Route::get('/trends','UserController@index');
 
 Auth::routes('');
 
@@ -30,6 +31,8 @@ Route::get('/profile', 'ProfileController@showProfile');
 Route::get('/detail/{crypto}', 'CryptoController@getDetail');
 
 Route::get('/detail/{crypto}/buy', 'CryptoController@postUserCryptos');
+
+Route::delete('/detail/{crypto}/sell', 'CryptoController@sellUserCryptos');
 
 Route::any('/search',function(){
         $q = Input::get ( 'q' );

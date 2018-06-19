@@ -30,7 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function cryptos() {
+    public function crypto() {
         return $this->hasMany('StockFlowSite\Crypto');
     }
 }

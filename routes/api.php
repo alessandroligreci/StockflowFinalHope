@@ -18,12 +18,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/crypto', 'CryptoController@postUserCryptos');
-Route::post('/cryptos', 'Auth\ApiController@getUserCryptos');
+Route::get('/crypto', 'CryptoController@postUserCryptos');
 
-Route::post('/follow', 'Auth\ApiController@followUser');
+Route::post('/cryptos', 'Auth\ApiController@getUserCryptos');
 
 Route::get('/wallet', 'Auth\ApiController@getWalletCryptos');
 Route::post('/wallet', 'Auth\ApiController@getWalletCryptos');
 
 Route::get('/users', 'Auth\ApiController@getUsers');
 Route::post('/users', 'Auth\ApiController@getUsers');
+
+Route::get('/all-users', 'UserController@index');
+Route::get('/user/{id}', 'UserController@show');

@@ -10,7 +10,6 @@ use Auth;
 class WalletController extends Controller
 {
 
-
     public function index() {
 
         if ($user = Auth::user()) {
@@ -27,7 +26,30 @@ class WalletController extends Controller
                 $totalValue = $walletVal - $walletCha;
                 $totalChange = (($walletVal / $walletCha) -1) * 100;
             }
-            return View::make('wallet',compact('wallet', 'walletVal', 'totalChange','totalValue'));
+            return view('wallet',compact('wallet', 'walletVal', 'totalChange','totalValue'));
+        } else {
+            return view('auth.login');
         }
     }
+
+    public function calculate ($value_now, $quantity, $value) {
+
+        $walletVal = 0;
+        $walletCha = 0;
+        $totalValue = 0;
+        $totalChange = 0;
+
+        foreach ($wallet as $crypto) {
+            $walletVal += $crypto->value_now * $crypto->quantity;
+            $walletCha += $crypto->value;
+        }
+        if ($walletCha > 0) {
+            $totalValue = $walletVal - $walletCha;
+            $totalChange = (($walletVal / $walletCha) -1) * 100;
+        }
+
+        return $totalChange;
+    }
+
+
 }
