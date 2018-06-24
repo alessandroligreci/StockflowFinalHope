@@ -17,14 +17,15 @@ use Illuminate\Support\Facades\Input;
 Route::redirect('/', '/home');
 
 Route::get('/wallet','WalletController@index');
+Route::get('/wallet/{id}', 'WalletController@otherWallet');
 
-Route::get('/trends','UserController@index');
+Route::get('/trends','TrendsController@index');
 
 Auth::routes('');
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/calendar', 'Calendarcontroller@showCalendar');
+Route::get('/calendar', 'CalendarController@index');
 
 Route::get('/profile', 'ProfileController@showProfile');
 
@@ -32,13 +33,6 @@ Route::get('/detail/{crypto}', 'CryptoController@getDetail');
 
 Route::get('/detail/{crypto}/buy', 'CryptoController@postUserCryptos');
 
-Route::delete('/detail/{crypto}/sell', 'CryptoController@sellUserCryptos');
+Route::delete('/wallet/sell/{id}', 'CryptoController@sellUserCryptos');
 
-Route::any('/search',function(){
-        $q = Input::get ( 'q' );
-        $user = User::where ( 'name', 'LIKE', '%' . $q . '%' )->orWhere ( 'email', 'LIKE', '%' . $q . '%' )->get ();
-        if (count ( $user ) > 0)
-            return view ( 'search_result' )->withDetails ( $user )->withQuery ( $q );
-        else
-            return view ( 'search_result' )->withMessage ( 'No Details found. Try to search again !' );
-    } );
+Route::any('/search', 'SearchController@index');

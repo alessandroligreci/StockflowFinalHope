@@ -12,7 +12,7 @@
             <ul class="navbar-nav mr-auto">
                 <a class="nav-link" href="{{ url('/home') }}">Home <span class="sr-only">(current)</span></a>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Trends</a>
+                    <a class="nav-link" href="/trends">Trends</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/calendar') }}">Calendar</a>

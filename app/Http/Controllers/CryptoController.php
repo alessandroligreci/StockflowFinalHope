@@ -48,15 +48,9 @@ use View;
         public function getDetail($crypto) {
             return view('detail',compact('crypto'));
         }
-        public function sellUserCryptos (Request $request) {
-            $crypto = new Crypto;
-            $crypto->name = $request->input('name');
-            $crypto->quantity = $request->input('quantity');
-            $crypto->value = $request->decrement('value');
-            $crypto->value_now = $request->input('value_now');
-            $crypto->user_id = Auth::user()->id;
-            // $crypto->save();
-            return;
+        public function sellUserCryptos ($id) {
+            Crypto::findOrFail($id)->delete();
+            return back();
         }
     }
 

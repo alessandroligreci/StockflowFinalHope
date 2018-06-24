@@ -17,7 +17,7 @@
             </div>
         </div>
         <div class="row" id="pricerow">
-            <table class="table-responsive">
+            <table class="table-responsive-xs">
                 <table class="table">
                     <thead>
                         <tr>
