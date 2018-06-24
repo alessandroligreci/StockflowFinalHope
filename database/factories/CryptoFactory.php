@@ -13,6 +13,3 @@ $factory->define(StockFlowSite\Crypto::class, function (Faker $faker) {
         'user_id'=>factory('StockFlowSite\User')->create()->id,
     ];
 });
-
-//salvare quantity in una variabile esterna
-//value = quantity * (chiamata al valore al momento d'acquisto della determinata crypto)

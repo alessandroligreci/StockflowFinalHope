@@ -1,4 +1,4 @@
-@extends('layouts.HomeApp')
+@extends('layouts.homeApp')
 @section('content')
 <body>
     <table class="table-responsive">
@@ -20,9 +20,7 @@
         </tbody>
     </table>
 <script src="https://code.jquery.com/jquery.min.js"></script>
-{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"></script> --}}
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"></script>
-{{-- <link href="{{ asset('css/home.css') }}" rel="stylesheet"> --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script type='text/javascript'>
@@ -56,8 +54,6 @@
                         else {
                             newRow += '<td class="align-middle d-sm-table-cell">' + change24.fontcolor("red") + '%'.fontcolor("red") + '</td>';
                         }
-                    //newRow += '<td>'+ '<button class="btn" onclick=""> BUY </button>' + '</td>';
-                    //newRow += '<td><button type="button" id = "button">Buy</button>' + '</td>';
                     newRow += '</tr>';
                     $(".table").append(newRow);
                 }
@@ -69,7 +65,6 @@
     }
     UpdateCryptoPrice();
 
-    //document.getElementById("button").addEventListener("click", displayDate);
     </script>
 </body>
 @endsection

@@ -12,12 +12,12 @@
     width: 100%;
 }
 
-.ciao {
+.tableContent {
     text-align: center;
     width: 15%;
 }
 
-.ciaone {
+.mainTable {
     text-align: center;
     width: 15%;
 }
@@ -40,4 +40,8 @@
 
 .btn-danger {
     color: white;
+}
+
+.title {
+    margin-top: 20px;
 }

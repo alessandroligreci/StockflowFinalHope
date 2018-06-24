@@ -36,12 +36,9 @@
                 </table>
         </div>
         <script src="https://code.jquery.com/jquery.min.js"></script>
-        {{--
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        </script> --}}
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
         </script>
-        <link href="{{ asset('css/dettaglio.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/detail.css') }}" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script type='text/javascript'>
@@ -71,28 +68,21 @@
                         document.getElementById('nome').innerHTML = name;
                         $("#icona").attr("src", 'https://s2.coinmarketcap.com/static/img/coins/32x32/' + result.data.id + '.png');
                         document.getElementById('simbolo').innerHTML = "(" + symbol + ")";
-                        // document.getElementById('valore').innerHTML = "$" + price;
                         var newRow = '<tr><td> $' + price + '</td>';
                         if (change1h > 0) {
                             newRow += '<td>' + change1h.fontcolor("green") + '%'.fontcolor("green");
-                            //document.getElementById('cambio1h').innerHTML = change1h.fontcolor("green") + "%".fontcolor("green");
                         } else {
                             newRow += '<td>' + change1h.fontcolor("red") + '%'.fontcolor("red");
-                            //document.getElementById('cambio1h').innerHTML = change1h.fontcolor("red") + "%".fontcolor("red");
                         }
                         if (change24h > 0) {
                             newRow += '<td>' + change24h.fontcolor("green") + '%'.fontcolor("green");
-                            //document.getElementById('cambio24h').innerHTML = change24h.fontcolor("green") + "%".fontcolor("green");
                         } else {
                             newRow += '<td>' + change24h.fontcolor("red") + '%'.fontcolor("red");
-                            //document.getElementById('cambio24h').innerHTML = change24h.fontcolor("red") + "%".fontcolor("red");
                         }
                         if (change7d > 0) {
                             newRow += '<td>' + change7d.fontcolor("green") + '%'.fontcolor("green") + '<br>';
-                            //document.getElementById('cambio7d').innerHTML = change7d.fontcolor("green") + "%".fontcolor("green");
                         } else {
                             newRow += '<td>' + change7d.fontcolor("red") + '%'.fontcolor("red") + '<br>';
-                            //document.getElementById('cambio7d').innerHTML = change7d.fontcolor("red") + "%".fontcolor("red");
                         }
                         newRow += '<td>' + volume24 + '</td>';
                         newRow += '<td>' + market + '</td>';
@@ -105,7 +95,7 @@
                         document.getElementById("buy").addEventListener("click", buyFunction);
 
                         function buyFunction() {
-                            var priceToBuy = parseFloat(prompt("Please enter the quantity you want to invest"));
+                            var priceToBuy = parseFloat(prompt("How many dollars do you want to invest?"));
                             var quantity = priceToBuy / priceNow;
                             var dataToSend = {
                                 name: name,
@@ -115,15 +105,9 @@
                             $.ajax({
                                 type: "GET",
                                 url: "http://stockflow.test/detail/{{$crypto}}/buy?name=" + name + '&value=' + priceToBuy + '&quantity=' + quantity + '&value_now=' + priceNow,
-                                // dataType: "form-data",
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
-                                // data: {
-                                //     'name': name,
-                                //     'quantity': quantity,
-                                //     'value': priceToBuy
-                                // },
 
                                 success: function(result) {
                                     console.log(result);
@@ -148,6 +132,4 @@
         </script>
     </div>
 </body>
-{{--
-@include('layouts.errors') --}}
 @endsection

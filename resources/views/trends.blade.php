@@ -6,7 +6,7 @@
 <body>
 
     <table class="table topSpace">
-        <tr class="ciaone">
+        <tr>
             <th class="date" style="text-align: center">Rank</th>
             <th class="date" style="text-align: center">Name</th>
             <th class="coin" style="text-align: center">Change</th>
@@ -14,7 +14,7 @@
 
         </tr>
         @foreach ($totalChange as $key => $change)
-        <tr class="ciao">
+        <tr>
             <td style="text-align : center">{{$loop->iteration}}</td>
             @foreach ($trends as $user)
             @if ($key == $user->id)
