@@ -36,14 +36,9 @@ use View;
             $crypto->quantity = $request->input('quantity');
             $crypto->value = $request->input('value');
             $crypto->value_now = $request->input('value_now');
-            // $crypto->walletChange = $request->input('walletChange');
             $crypto->user_id = Auth::user()->id;
             $crypto->save();
             return;
-            //return response()->json('ok');
-            //$wallet = Crypto::where('user_id', Auth::user()->id)->get();
-            //return View::make('wallet',compact('wallet'));
-            //return view('wallet');
         }
         public function getDetail($crypto) {
             return view('detail',compact('crypto'));
