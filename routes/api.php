@@ -17,8 +17,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/crypto', 'CryptoController@postUserCryptos');
+Route::post('/crypto', 'CryptoController@postUserCryptosApp');
 Route::get('/crypto', 'CryptoController@postUserCryptos');
+
+Route::get('/allUsers', 'UserController@trendsApp');
+
+Route::post('/sell', 'CryptoController@sellCryptosApp');
 
 Route::post('/cryptos', 'Auth\ApiController@getUserCryptos');
 

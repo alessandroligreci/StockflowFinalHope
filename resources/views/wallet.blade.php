@@ -3,7 +3,7 @@
 
 <body>
     <div class="container-fluid">
-            <h1 style="text-align: center">{{$name}}</h1>
+            <h1 style="text-align: center" class="title">{{$name}}</h1>
         @if ($totalValue != 0)
         <div class="changes">
             @if ($totalValue
@@ -26,7 +26,7 @@
     @endif
     </div>
     <table class="table topSpace">
-        <tr class="ciaone">
+        <tr class="mainTable">
             <th class="date">Date</th>
             <th class="coin">Coin</th>
             <th class="quantity">Quantity</th>
@@ -38,7 +38,7 @@
             @endif
         </tr>
         @foreach ($wallet as $crypto)
-        <tr class="ciao">
+        <tr class="tableContent">
             <td class="created_at record">{{$crypto->created_at->toDayDateTimeString()}}</td>
             <td class="cryptoTitle record">{{$crypto->name}}</td>
             <td class="quantity record">{{number_format($crypto->quantity, 4, ',','.')}}</td>
@@ -57,8 +57,7 @@
                         <button class="btn btn-danger record" type="submit" style="color: white">Sell</button>
                     </form>
                 </td>
-                @endif {{--
-                <td><button type="button" class="btn btn-danger" id="sell">Sell</button></td> --}}
+                @endif
         </tr>
         @endforeach
     </table>
@@ -73,6 +72,5 @@
     </div>
     @endif
     </div>
-
 </body>
 @endsection

@@ -1,3 +1,7 @@
-row {
-    display: block;
+#title {
+    margin-top: 20px;
+}
+
+#pricerow {
+    margin-top: 20px;
 }

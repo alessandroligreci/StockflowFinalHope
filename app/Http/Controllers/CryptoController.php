@@ -9,14 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use View;
 
 ?>
-<!-- <script type='text/javascript'></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
-<!-- <script language="JavaScript" type="text/javascript" src="/js/jquery-1.2.6.min.js"></script>
-<script language="JavaScript" type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script> -->
-<!-- <script language="JavaScript" type="text/javascript" src="/js/sprinkle.js"></script> -->
 
 <?php
 
@@ -37,8 +29,20 @@ use View;
             $crypto->value = $request->input('value');
             $crypto->value_now = $request->input('value_now');
             $crypto->user_id = Auth::user()->id;
+            // $request->input('user_id');
             $crypto->save();
             return;
+            // response()->json($crypto);
+        }
+        public function postUserCryptosApp(Request $request) {
+            $crypto = new Crypto;
+            $crypto->name = $request->input('name');
+            $crypto->quantity = $request->input('quantity');
+            $crypto->value = $request->input('value');
+            $crypto->value_now = $request->input('value_now');
+            $crypto->user_id = $request->input('user_id');
+            $crypto->save();
+            return response()->json($crypto);
         }
         public function getDetail($crypto) {
             return view('detail',compact('crypto'));
@@ -46,6 +50,11 @@ use View;
         public function sellUserCryptos ($id) {
             Crypto::findOrFail($id)->delete();
             return back();
+        }
+
+        public function sellCryptosApp (Request $request) {
+            Crypto::findOrFail($request->input('id'))->delete();
+            return response()->json("done");
         }
     }
 

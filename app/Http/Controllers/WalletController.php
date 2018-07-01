@@ -56,6 +56,4 @@ class WalletController extends Controller
             return view('auth.login');
         }
     }
-
-
 }
