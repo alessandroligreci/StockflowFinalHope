@@ -104,7 +104,11 @@
                             };
                             $.ajax({
                                 type: "GET",
+<<<<<<< HEAD
                                 url: "/detail/{{$crypto}}/buy?name=" + name + '&value=' + priceToBuy + '&quantity=' + quantity + '&value_now=' + priceNow,
+=======
+                                url: "http://stockflow.test/detail/{{$crypto}}/buy?name=" + name + '&value=' + priceToBuy + '&quantity=' + quantity + '&value_now=' + priceNow,
+>>>>>>> origin/master
                                 headers: {
                                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                                 },
